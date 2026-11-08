@@ -1,0 +1,78 @@
+
+local player = game.Players.LocalPlayer
+
+local gui = Instance.new("ScreenGui")
+gui.Name = "FPSBoosterUI"
+gui.ResetOnSpawn = false
+gui.Parent = player:WaitForChild("PlayerGui")
+
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 300, 0, 230)
+frame.Position = UDim2.new(0.5, -150, 0.5, -115)
+frame.BackgroundColor3 = Color3.fromRGB(25, 25, 35)
+frame.Parent = gui
+
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0, 12)
+corner.Parent = frame
+
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, 0, 0, 50)
+title.BackgroundTransparency = 1
+title.Text = "FPS BOOSTER"
+title.TextColor3 = Color3.new(1, 1, 1)
+title.TextSize = 22
+title.Font = Enum.Font.GothamBold
+title.Parent = frame
+
+local status = Instance.new("TextLabel")
+status.Position = UDim2.new(0, 0, 0, 55)
+status.Size = UDim2.new(1, 0, 0, 30)
+status.BackgroundTransparency = 1
+status.Text = "Select your FPS"
+status.TextColor3 = Color3.fromRGB(180, 180, 190)
+status.TextSize = 14
+status.Parent = frame
+
+local function makeButton(name, position)
+    local button = Instance.new("TextButton")
+    button.Size = UDim2.new(0, 120, 0, 40)
+    button.Position = position
+    button.BackgroundColor3 = Color3.fromRGB(80, 90, 200)
+    button.TextColor3 = Color3.new(1, 1, 1)
+    button.Text = name
+    button.TextSize = 16
+    button.Font = Enum.Font.GothamBold
+    button.Parent = frame
+
+    local c = Instance.new("UICorner")
+    c.CornerRadius = UDim.new(0, 8)
+    c.Parent = button
+
+    return button
+end
+
+local b1 = makeButton("60 FPS", UDim2.new(0, 20, 0, 105))
+local b2 = makeButton("144 FPS", UDim2.new(0, 160, 0, 105))
+local b3 = makeButton("240 FPS", UDim2.new(0, 20, 0, 155))
+local b4 = makeButton("360 FPS", UDim2.new(0, 160, 0, 155))
+
+local function selectFPS(value)
+    status.Text = "Selected: " .. value .. " FPS"
+end
+
+b1.MouseButton1Click:Connect(function()
+    selectFPS(60)
+end)
+
+b2.MouseButton1Click:Connect(function()
+    selectFPS(144)
+end)
+
+b3.MouseButton1Click:Connect(function()
+    selectFPS(240)
+end)
+
+b4.MouseButton1Click:Connect(function()
+    selectFPS(360)
+end)
